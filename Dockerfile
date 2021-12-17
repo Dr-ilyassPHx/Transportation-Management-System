@@ -12,6 +12,10 @@ WORKDIR /app
 
 COPY requirements.txt /app
 RUN pip3 install -r requirements.txt
-COPY . .
+COPY ./tmsapp .
+COPY ./run.sh  /
+RUN chmod +x /run.sh
 
-CMD [ "python3", "manage.py", "runserver", "0.0.0.0:8000"]
+#CMD [ "python3", "manage.py", "runserver" ]
+
+ENTRYPOINT  [ "sh", "/run.sh"]
